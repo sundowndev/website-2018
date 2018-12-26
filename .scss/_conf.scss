@@ -1,0 +1,26 @@
+$containerWidth: 92%;
+
+// Colors
+
+$color1: #070707;
+$color2: #ffc400;
+$color3: #868686;
+$color4: #ffffff;
+
+$textColor: $color4;
+
+// Fonts
+
+$fontFamilyTitle: "Raleway", Arial;
+$fontFamilyText: "Roboto", Arial;
+$fontFamilyBtn: "Montserrat", Arial;
+
+// Conf vars
+
+$transition: ease-out .3s;
+
+// Mixins
+
+@mixin backgroundImage($image) {
+  background: url('../../images/#{$image}')
+}

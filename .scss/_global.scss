@@ -1,0 +1,87 @@
+body {
+    background-color: $color1;
+    font-family: $fontFamilyText;
+    font-weight: 300;
+    color: $textColor;
+}
+
+h1,h2,h3,h4,h5 {
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: $color2;
+}
+
+.bg-image,
+.bg-overlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    transition: $transition;
+}
+
+.bg-overlay {
+    background: $color1;
+    z-index : 2;
+}
+
+.container {
+    z-index: 3;
+    position: relative;
+}
+
+.loader.open {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.loader.open .container.head-content {
+    width: auto;
+    margin: auto;
+    padding-top: 0;
+}
+
+.load-bar {
+    display: block;
+    background: $color2;
+    width: 0%;
+    height: 5px;
+    margin-top: 10px;
+    transition: 1.5s;
+}
+
+.margin-top {
+    margin-top: 15px;
+}
+
+.margin-top-30 {
+    margin-top: 30px;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-in {
+  -webkit-animation: fadeIn .5s ease-in 1 forwards;
+  animation: fadeIn .5s ease-in 1 forwards;
+  opacity: 0;
+}
+
+.fade-out {
+  -webkit-animation: fadeOut .5s ease-in 1 forwards;
+  animation: fadeOut .5s ease-in 1 forwards;
+  opacity: 1;
+}

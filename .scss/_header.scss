@@ -1,0 +1,31 @@
+.logo {
+    display: inline-block;
+}
+
+.logo .logo-slice-1,
+.logo .logo-slice-2 {
+    font-family: $fontFamilyTitle;
+}
+
+
+.logo .logo-slice-1 {
+    font-size: 32px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.logo .logo-slice-2 {
+    font-size: 24px;
+    font-weight: 300;
+    color: $color3;
+    margin-left: 45px;
+    transition: .3s;
+}
+
+.logo:hover .logo-slice-1 {
+    margin-left: 5px;
+}
+
+.logo:hover .logo-slice-2 {
+    margin-left: 40px;
+}
