@@ -30,58 +30,69 @@ let menuItems = document.querySelectorAll('.menu-item');
 /*
  * Init function
  */
-window.onload = function () {
-    loadBar.style.width = '100%';
+window.onload = function() {
+  loadBar.style.width = '100%';
 
-    setTimeout(function(){
-        fadeout(logo);
+  setTimeout(function() {
+    fadeout(logo);
 
-        setTimeout(function(){
-            hide(loadBar);
-            loader.classList.remove('open');
-            fadein(menu);
-            fadein(menuBurger);
-            fadein(logo);
-            fadein(content);
-        }, 1000);
-    }, 1500);
+    setTimeout(function() {
+      hide(loadBar);
+      loader.classList.remove('open');
+      fadein(menu);
+      fadein(menuBurger);
+      fadein(logo);
+      fadein(content);
+    }, 1000);
+  }, 1500);
 };
 
 /*
  * Burger menu click event
  */
-menuBurgerBtn.addEventListener('click', function(e){
-    e.preventDefault();
-    toggleMenu();
+menuBurgerBtn.addEventListener('click', function(e) {
+  e.preventDefault();
+  toggleMenu();
 });
 
 /*
  * Menu items click events
  */
-menuItems.forEach(function(e){
-    e.addEventListener('click', function(els){
-        let thisId = e.dataset.section;
+menuItems.forEach(function(e) {
+  e.addEventListener('click', function(els) {
+    let thisId = e.dataset.section;
 
-        showSection(thisId);
+    showSection(thisId);
 
-        menuItems.forEach(function(element){
-            element.parentNode.classList.remove('active');
-        });
-
-        e.parentNode.classList.add('active');
-
-        if (menu.classList.contains('open')) {
-            toggleMenu();
-        }
+    menuItems.forEach(function(element) {
+      element.parentNode.classList.remove('active');
     });
+
+    e.parentNode.classList.add('active');
+
+    if (menu.classList.contains('open')) {
+      toggleMenu();
+    }
+  });
 });
 
 /*
  * Show projects in the container
  */
 projectsContainer.innerHTML = '';
-data.projects.forEach(function(project){
-    projectsContainer.innerHTML += '<div class="project-item" data-id="'+data.projects.indexOf(project)+'"><a href="#/work/'+project.name.toLowerCase()+'">'+project.name+'</a><div class="project-item-bg" style="background-image:url('+dir_images + '/' + project.thumbnail+');"></div></div>';
+data.projects.forEach(function(project) {
+  projectsContainer.innerHTML +=
+    '<div class="project-item" data-id="' +
+    data.projects.indexOf(project) +
+    '"><a href="#/work/' +
+    project.name.toLowerCase() +
+    '">' +
+    project.name +
+    '</a><div class="project-item-bg" style="background-image:url(' +
+    dir_images +
+    '/' +
+    project.thumbnail +
+    ');"></div></div>';
 });
 
 /*
@@ -89,54 +100,54 @@ data.projects.forEach(function(project){
  */
 let projects = document.querySelectorAll('.project-item');
 
-projects.forEach(function(elem){
-    elem.addEventListener('click', function(){
-        let projectID = elem.dataset.id;
+projects.forEach(function(elem) {
+  elem.addEventListener('click', function() {
+    let projectID = elem.dataset.id;
 
-        setProject(data.projects[projectID]);
-    });
+    setProject(data.projects[projectID]);
+  });
 });
 
 /*
  * Router JS
  */
-var router = new router();
+const router = new leafeon.Router();
 
-router.add('home', '/', function () {
-    showSection('about');
+router.add('home', '/', function() {
+  showSection('about');
 });
 
-router.add('section', '/:section', function (sectionID) {
-    showSection(sectionID);
+router.add('section', '/:section', function(sectionID) {
+  showSection(sectionID);
 
-    menuItems.forEach(function(element){
-        if(element.dataset.section === sectionID){
-            element.parentNode.classList.add('active');
-        }else{
-            element.parentNode.classList.remove('active');
-        }
-    });
+  menuItems.forEach(function(element) {
+    if (element.dataset.section === sectionID) {
+      element.parentNode.classList.add('active');
+    } else {
+      element.parentNode.classList.remove('active');
+    }
+  });
 });
 
-router.add('work', '/#/work/:id', function (project) {
-    let sectionActive = document.querySelector('.section.active');
-    let section = document.querySelector('#project');
+router.add('work', '/#/work/:id', function(project) {
+  let sectionActive = document.querySelector('.section.active');
+  let section = document.querySelector('#project');
 
-    data.projects.forEach(function(elem){
-        if(elem.name.toLowerCase() === project){
-            setProject(elem, true);
-            sectionActive.classList.remove('active');
-            section.classList.add('active');
-        }
-    });
+  data.projects.forEach(function(elem) {
+    if (elem.name.toLowerCase() === project) {
+      setProject(elem, true);
+      sectionActive.classList.remove('active');
+      section.classList.add('active');
+    }
+  });
 
-    menuItems.forEach(function(element){
-        if(element.dataset.section === 'projects'){
-            element.parentNode.classList.add('active');
-        }else{
-            element.parentNode.classList.remove('active');
-        }
-    });
+  menuItems.forEach(function(element) {
+    if (element.dataset.section === 'projects') {
+      element.parentNode.classList.add('active');
+    } else {
+      element.parentNode.classList.remove('active');
+    }
+  });
 });
 
 router.run();
